@@ -120,7 +120,7 @@ def dashboard():
 
     return render_template('dashboard.html')
 
-prompt = os.getenv("PROMPT")
+prompt = " can you give me a day plan in the form of a json file with those activities and say nothing else. also, write it as a normal text, not a code text"
 
 @app.route("/gemini-response/", methods=['POST'])
 def getGeminiResponses():
