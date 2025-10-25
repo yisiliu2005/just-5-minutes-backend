@@ -7,7 +7,7 @@ import json
 import secrets
 from functools import wraps
 import firebase_admin
-from firebase_admin import credentials, firestore, auth
+from firebase_admin import credentials, firestore, auth, messaging
 from datetime import timedelta
 
 load_dotenv()
@@ -133,6 +133,15 @@ def getGeminiResponses():
     return response.text, 200
 
 
+@app.route("/pushNotification/<notification>")
+def pushNotification(notification):
+    message = messaging.Message(
+        notification=messaging.Notification(
+            title='Hello from Flask!',
+            body='This is a push notification sent from your Flask app.'
+        ),
+        token='DEVICE_REGISTRATION_TOKEN' # Replace with the actual device token
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
