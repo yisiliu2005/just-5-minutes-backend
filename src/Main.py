@@ -1,7 +1,10 @@
 from flask import Flask
+from flask import request
+from markupsafe import escape
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/hello")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    name = request.args.get("name", "User")
+    return f"Hello, {escape(name)}!"
