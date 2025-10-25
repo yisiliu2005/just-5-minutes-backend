@@ -118,7 +118,7 @@ def dashboard():
 
     return render_template('dashboard.html')
 
-prompt = 
+prompt = os.getenv("PROMPT")
 
 @app.route("/gemini-response/", methods=['POST'])
 def getGeminiResponses():
