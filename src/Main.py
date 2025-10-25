@@ -4,6 +4,7 @@ from flask import Flask
 from flask import request
 from markupsafe import escape
 from google import genai
+import json
 
 load_dotenv()
 
@@ -25,6 +26,10 @@ def hello_world():
 def getUser(username):
     return f"Hello, {escape(username)}!"
 
+
+inputs = []
+json_string = '{"name": "Alice", "age": 30, "city": "New York"}'
+data = json.loads(json_string)
 
 #Gemini API:
 response = client.models.generate_content(
