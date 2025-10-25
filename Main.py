@@ -118,8 +118,17 @@ def dashboard():
 
     return render_template('dashboard.html')
 
+prompt = 
 
-
+@app.route("/gemini-response/", methods=['POST'])
+def getGeminiResponses():
+    if request.is_json:
+        data = request.get_json(force=True)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash", 
+            contents=(str(data) + prompt)
+        )
+    return response.text, 200
 
 
 
