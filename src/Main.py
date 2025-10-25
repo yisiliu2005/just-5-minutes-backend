@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 from flask import Flask
 from flask import request
 from markupsafe import escape
@@ -13,4 +18,14 @@ def hello_world():
 @app.route("/user/<username>")
 def getUser(username):
     return f"Hello, {escape(username)}!"
+
+from google import genai
+
+# The client gets the API key from the environment variable `GEMINI_API_KEY`.
+client = genai.Client()
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash", contents="Explain how AI works in a few words"
+)
+print(response.text)
 
