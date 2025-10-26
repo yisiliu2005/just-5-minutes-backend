@@ -23,7 +23,7 @@ def getGeminiResponses():
         data = request.get_json(force=True)
         response = client.models.generate_content(
             model="gemini-2.5-flash",
-            contents= (str(data), " , please create a time for these habits during the day. It shold be in this format: title, startTime, endTime. Space the habits out throughout the day; do not have them right next to each other. The end time should be 5 minutes after the start time pretty princess"),
+            contents= (str(data), " , please create a time for these habits during the day. It shold be in this format: title, startTime, endTime. Space the habits out throughout the day; do not have them right next to each other. The end time should be 30 minutes after the start time pretty princess. The following time blocks are unavailable, do not schedule the tasks within the following time blocks: 00:00-06:30, 07:00-07:30, 08:00-08:30, 12:00-13:00, 13:3014:30, 21:00-22:00."),
             config={
                 "response_mime_type": "application/json",
                 "response_schema": list[StoreData],
