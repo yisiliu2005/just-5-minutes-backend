@@ -29,10 +29,12 @@ def getGeminiResponses():
                 "response_schema": list[StoreData],
             },
         )
-    return response.text, 200
+        print(response.text);
+        return {"status": 200, "data": response.text}
+    return {"status": 400, "error": "Error with Gemini API"}
 
     #curl -X POST -H "Content-Type: application/json" -d '[{"task": "find a job", "desc": "i need a job"},{"task": "do calc homework", "desc": "focus on studying derivatives"}]' http://127.0.0.1:5000/gemini-response/
-    #python -m flask --app Main run --debug
+    #python -m flask --app GetPrompt run --debug
 
 
 
